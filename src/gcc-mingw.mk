@@ -20,13 +20,16 @@ endef
 
 define $(PKG)_CONFIGURE
     # configure gcc
+    
+    ln -s '$(PREFIX)/$(TARGET)' '$(PREFIX)/$(TARGET)/mingw'
+    
     mkdir '$(1).build'
     cd    '$(1).build' && '$(1)/configure' \
         --target='$(TARGET)' \
         --host='$(TARGET)' \
         --build='$(BUILD)' \
+        --prefix='$(PREFIX)/$(TARGET)' \
         --with-sysroot='$(PREFIX)/$(TARGET)' \
-        --prefix='$(PREFIX)/$(TARGET)/gcc' \
         --libdir='$(PREFIX)/lib' \
         --enable-languages='c,c++,objc,fortran' \
         --enable-version-specific-runtime-libs \
@@ -50,14 +53,15 @@ define $(PKG)_CONFIGURE
         $(shell [ `uname -s` == Darwin ] && echo "LDFLAGS='-Wl,-no_pie'")
 endef
 
-#define $(PKG)_POST_BUILD
+define $(PKG)_POST_BUILD
 #    # TODO: find a way to configure the installation of these correctly
 #    rm -f $(addprefix $(PREFIX)/$(TARGET)/bin/, c++ g++ gcc gfortran)
 #    -mv '$(PREFIX)/lib/gcc/$(TARGET)/lib/'* '$(PREFIX)/lib/gcc/$(TARGET)/$($(PKG)_VERSION)/'
 #    -mv '$(PREFIX)/lib/gcc/$(TARGET)/'*.dll '$(PREFIX)/lib/gcc/$(TARGET)/$($(PKG)_VERSION)/'
 #    -cp '$(PREFIX)/lib/gcc/$(TARGET)/$($(PKG)_VERSION)/'*.dll '$(PREFIX)/$(TARGET)/bin/'
 #    -cp '$(PREFIX)/lib/gcc/$(TARGET)/$($(PKG)_VERSION)/'*.dll.a '$(PREFIX)/$(TARGET)/lib/'
-#endef
+    rm '$(PREFIX)/$(TARGET)/mingw'
+endef
 
 define $(PKG)_BUILD_mingw-w64
     # build standalone gcc

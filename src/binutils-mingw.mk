@@ -21,6 +21,7 @@ endef
 define $(PKG)_BUILD
     cd '$(1)' && ./configure \
         $(MXE_CONFIGURE_OPTS) \
+        --with-sysroot='$(PREFIX)/$(TARGET)'
         --disable-multilib \
         --with-gcc \
         --with-gnu-ld \
