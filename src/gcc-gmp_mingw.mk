@@ -1,7 +1,7 @@
 # This file is part of MXE.
 # See index.html for further information.
 
-PKG             := gcc-gmp-mingw
+PKG             := gcc-gmp_mingw
 $(PKG)_IGNORE    = $(gmp_IGNORE)
 $(PKG)_VERSION   = $(gmp_VERSION)
 $(PKG)_CHECKSUM  = $(gmp_CHECKSUM)
@@ -19,7 +19,6 @@ define $(PKG)_BUILD
     mkdir '$(1).build'
     cd    '$(1).build' && '$(1)/configure' \
         --host='$(TARGET)' \
-        --build='$(BUILD)' \
         --prefix='$(PREFIX)/$(TARGET)' \
         --disable-shared
     $(MAKE) -C '$(1).build' -j '$(JOBS)'

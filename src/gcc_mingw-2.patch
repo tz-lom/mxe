@@ -1,0 +1,12 @@
+--- gcc-5.2.0/gcc/config/i386/mingw32.h	2015-01-29 11:03:56.000000000 +0300
++++ fix/gcc/config/i386/mingw32.h	2015-08-21 21:53:56.000000000 +0300
+@@ -29,8 +29,7 @@
+ #undef TARGET_SUBTARGET_DEFAULT
+ #define TARGET_SUBTARGET_DEFAULT \
+ 	(MASK_80387 | MASK_IEEE_FP | MASK_FLOAT_RETURNS \
+-	 | MASK_STACK_PROBE | MASK_ALIGN_DOUBLE \
+-	 | MASK_MS_BITFIELD_LAYOUT)
++	 | MASK_STACK_PROBE | MASK_ALIGN_DOUBLE )
+ 
+ /* See i386/crtdll.h for an alternative definition. _INTEGRAL_MAX_BITS
+    is for compatibility with native compiler.  */

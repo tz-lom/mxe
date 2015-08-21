@@ -1,18 +1,18 @@
 # This file is part of MXE.
 # See index.html for further information.
 
-PKG             := gcc-mpc-mingw
-$(PKG)_IGNORE    = $(mpc_IGNORE)
-$(PKG)_VERSION   = $(mpc_VERSION)
-$(PKG)_CHECKSUM  = $(mpc_CHECKSUM)
-$(PKG)_SUBDIR    = $(mpc_SUBDIR)
-$(PKG)_FILE      = $(mpc_FILE)
-$(PKG)_URL       = $(mpc_URL)
-$(PKG)_URL_2     = $(mpc_URL_2)
-$(PKG)_DEPS     := gcc-gmp-mingw gcc-mpfr-mingw
+PKG             := gcc-mpfr_mingw
+$(PKG)_IGNORE    = $(mpfr_IGNORE)
+$(PKG)_VERSION   = $(mpfr_VERSION)
+$(PKG)_CHECKSUM  = $(mpfr_CHECKSUM)
+$(PKG)_SUBDIR    = $(mpfr_SUBDIR)
+$(PKG)_FILE      = $(mpfr_FILE)
+$(PKG)_URL       = $(mpfr_URL)
+$(PKG)_URL_2     = $(mpfr_URL_2)
+$(PKG)_DEPS     := gcc-gmp_mingw
 
 define $(PKG)_UPDATE
-    echo $(mpc_VERSION)
+    echo $(mpfr_VERSION)
 endef
 
 define $(PKG)_BUILD

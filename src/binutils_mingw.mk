@@ -1,7 +1,7 @@
 # This file is part of MXE.
 # See index.html for further information.
 
-PKG             := binutils-mingw
+PKG             := binutils_mingw
 $(PKG)_IGNORE   :=
 $(PKG)_VERSION  := 2.25.1
 $(PKG)_CHECKSUM := 1d597ae063e3947a5f61e23ceda8aebf78405fcd

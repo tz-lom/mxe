@@ -1,18 +1,18 @@
 # This file is part of MXE.
 # See index.html for further information.
 
-PKG             := gcc-isl-mingw
-$(PKG)_IGNORE    = $(isl_IGNORE)
-$(PKG)_VERSION   = $(isl_VERSION)
-$(PKG)_CHECKSUM  = $(isl_CHECKSUM)
-$(PKG)_SUBDIR    = $(isl_SUBDIR)
-$(PKG)_FILE      = $(isl_FILE)
-$(PKG)_URL       = $(isl_URL)
-$(PKG)_URL_2     = $(isl_URL_2)
-$(PKG)_DEPS     := gcc-gmp-mingw
+PKG             := gcc-mpc_mingw
+$(PKG)_IGNORE    = $(mpc_IGNORE)
+$(PKG)_VERSION   = $(mpc_VERSION)
+$(PKG)_CHECKSUM  = $(mpc_CHECKSUM)
+$(PKG)_SUBDIR    = $(mpc_SUBDIR)
+$(PKG)_FILE      = $(mpc_FILE)
+$(PKG)_URL       = $(mpc_URL)
+$(PKG)_URL_2     = $(mpc_URL_2)
+$(PKG)_DEPS     := gcc-gmp_mingw gcc-mpfr_mingw
 
 define $(PKG)_UPDATE
-    echo $(isl_VERSION)
+    echo $(mpc_VERSION)
 endef
 
 define $(PKG)_BUILD
@@ -22,7 +22,7 @@ define $(PKG)_BUILD
         --build='$(BUILD)' \
         --prefix='$(PREFIX)/$(TARGET)' \
         --disable-shared \
-        --with-gmp-prefix='$(PREFIX)/$(TARGET)'
+        --with-gmp='$(PREFIX)/$(TARGET)'
     $(MAKE) -C '$(1).build' -j '$(JOBS)'
     $(MAKE) -C '$(1).build' -j 1 install
 endef

@@ -23,7 +23,7 @@ define $(PKG)_BUILD
         $(SED) -i '1i#ifndef LIBARCHIVE_STATIC\n#define LIBARCHIVE_STATIC\n#endif' -i '$(1)/libarchive/archive_entry.h')
     cd '$(1)' && ./configure \
         $(MXE_CONFIGURE_OPTS) \
-        --disable-bsdtar \
+        --enable-bsdtar \
         --disable-bsdcpio \
         --disable-bsdcat \
         XML2_CONFIG='$(PREFIX)/$(TARGET)'/bin/xml2-config
