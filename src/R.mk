@@ -21,22 +21,16 @@ endef
 define $(PKG)_BUILD
     cd '$(1)'
     
-    $(PATCH) -p1 < '$(SRC_DIR)/R/connections.patch'
-    $(PATCH) -p1 < '$(SRC_DIR)/R/library-utils.patch'
-    $(PATCH) -p1 < '$(SRC_DIR)/R/tcl-version.patch'
-    $(PATCH) -p1 < '$(SRC_DIR)/R/frontends.patch'
-    $(PATCH) -p1 < '$(SRC_DIR)/R/wineWrapper.patch'
-    
     mv src/gnuwin32/front-ends/RGui32.manifest src/gnuwin32/front-ends/Rgui32.manifest
     mv src/gnuwin32/front-ends/RGui64.manifest src/gnuwin32/front-ends/Rgui64.manifest
    
-    mkdir -p .wine
-    export WINEPREFIX=$(realpath .wine)
-    wine regedit $(SRC_DIR)/R/wine.reg
+    mkdir -p wine/dosdevices
+    ln -s $(PREFIX)/$(TARGET) wine/dosdevices/h:
+    export WINEPREFIX=$(realpath wine)
+    wine regedit $(SRC_DIR)/R-wine.reg
     
     cd src/gnuwin32
-    cp '$(SRC_DIR)/R/MkRules.local' ./
-    export WINEPREFIX=$(realpath ../../.wine)
+    cp '$(SRC_DIR)/R/MkRules.local' ./MkRules
     
-    $(MAKE) -j '$(JOBS)' all cairodevices
+    $(MAKE) -j '$(JOBS)' all cairodevices vignettes manuals
 endef

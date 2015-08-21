@@ -1,0 +1,19 @@
+--- R-3.2.0/src/gnuwin32/front-ends/Makefile	2015-03-19 02:04:04.000000000 +0300
++++ R-3.2.0/src/gnuwin32/front-ends/Makefile	2015-06-13 11:31:13.103306658 +0300
+@@ -26,7 +26,15 @@
+ 
+ .PHONY : all makeMakedeps
+ 
+-all: makeMakedeps \
++all: buildall
++	for i in $(R_HOME)/$(BINDIR)/*.exe; do \
++		if [ ! -f $$i.stub ]; then mv $$i $$i.stub; fi; \
++		echo wine `realpath "$$i"`.stub \$$@ > $$i; \
++		chmod +x $$i; \
++		ln -sf `realpath $$i` "$${i/.exe/}"; \
++	done
++
++buildall: makeMakedeps \
+      $(R_HOME)/$(BINDIR)/Rgui.exe $(R_HOME)/$(BINDIR)/Rterm.exe \
+      $(R_HOME)/$(BINDIR)/Rcmd.exe  $(R_HOME)/$(BINDIR)/RSetReg.exe  \
+      $(R_HOME)/$(BINDIR)/R.exe\
