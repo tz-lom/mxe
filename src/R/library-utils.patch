@@ -1,0 +1,11 @@
+--- R-3.2.0/src/library/utils/src/Makefile.win	2015-03-19 02:03:04.000000000 +0300
++++ R-3.2.0-success/src/library/utils/src/Makefile.win	2015-06-12 19:04:04.129937884 +0300
+@@ -27,7 +27,7 @@
+   -I$(R_HOME)/src/main -I$(R_HOME)/src/gnuwin32 -I$(R_HOME)/src/extra \
+   -I$(R_HOME)/src/library/grDevices/src $(XZ_CPPFLAGS)
+ 
+-PKG_LIBS = -lRgraphapp -lVersion -L"$(EXT_LIBS)"/lib$(R_ARCH) -llzma
++PKG_LIBS = -lRgraphapp -lversion -L"$(EXT_LIBS)"/lib$(R_ARCH) -llzma
+ 
+ all: makeMakedeps shlib
+ 

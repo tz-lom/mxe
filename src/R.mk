@@ -21,16 +21,20 @@ endef
 define $(PKG)_BUILD
     cd '$(1)'
     
-    mv src/gnuwin32/front-ends/RGui32.manifest src/gnuwin32/front-ends/Rgui32.manifest
-    mv src/gnuwin32/front-ends/RGui64.manifest src/gnuwin32/front-ends/Rgui64.manifest
+    mv '$(1)/src/gnuwin32/front-ends/RGui32.manifest' '$(1)/src/gnuwin32/front-ends/Rgui32.manifest'
+    mv '$(1)/src/gnuwin32/front-ends/RGui64.manifest' '$(1)/src/gnuwin32/front-ends/Rgui64.manifest'
    
-    mkdir -p wine/dosdevices
-    ln -s $(PREFIX)/$(TARGET) wine/dosdevices/h:
-    export WINEPREFIX=$(realpath wine)
-    wine regedit $(SRC_DIR)/R-wine.reg
+    mkdir -p '$(1)/wine'
+    WINEPREFIX='$(1)/wine' wine regedit '$(SRC_DIR)/R/wine.reg'
+    ln -s '$(PREFIX)/$(TARGET)' '$(1)/wine/dosdevices/h:'
+
     
-    cd src/gnuwin32
-    cp '$(SRC_DIR)/R/MkRules.local' ./MkRules
+    cp '$(SRC_DIR)/R/MkRules.local' '$(1)/src/gnuwin32/'
+    cp '$(SRC_DIR)/R/Rpwd.exe' '$(1)/'
     
-    $(MAKE) -j '$(JOBS)' all cairodevices vignettes manuals
+    cd '$(1)/src/gnuwin32' && WINEPREFIX='$(1)/wine' $(MAKE) 
+    
+    
+    exit 1
+    
 endef

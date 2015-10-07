@@ -14,7 +14,7 @@
  
  Rpwd.exe: front-ends/Rpwd.exe
 -	$(CP) $< $@
-+	$(CP) ../../Rpwd.exe $@
++	$(CP) ../../../../Rpwd.exe $@
  
  front-ends/Rpwd.exe:
  	$(MK) -C front-ends Rpwd

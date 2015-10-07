@@ -1,0 +1,11 @@
+--- ./qt-everywhere-opensource-src-5.5.0/qtwebkit/Source/WebCore/DerivedSources.pri	2015-06-29 23:11:19.000000000 +0300
++++ b/qtwebkit/Source/WebCore/DerivedSources.pri	2015-09-07 20:19:14.000000000 +0300
+@@ -752,7 +752,7 @@
+ preprocessIdls.input = IDL_ATTRIBUTES_FILE
+ preprocessIdls.script = $$PREPROCESS_IDLS_SCRIPT
+ # FIXME : We need to use only perl at some point.
+-win_cmd_shell: preprocessIdls.commands = type nul > $$IDL_FILES_TMP $$EOC
++win_cmd_shell: preprocessIdls.commands = touch $$IDL_FILES_TMP $$EOC
+ else: preprocessIdls.commands = cat /dev/null > $$IDL_FILES_TMP $$EOC
+ for(binding, IDL_BINDINGS) {
+     # We need "$$binding" instead of "$$binding ", because Windows' echo writes trailing whitespaces. (http://wkb.ug/88304)

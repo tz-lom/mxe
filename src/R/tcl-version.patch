@@ -1,0 +1,11 @@
+--- R-3.2.0/src/gnuwin32/fixed/etc/Makeconf	2015-03-19 02:04:05.000000000 +0300
++++ R-3.2.0-success/src/gnuwin32/fixed/etc/Makeconf	2015-06-12 19:10:18.426604765 +0300
+@@ -57,7 +57,7 @@
+ 
+ ## For use in packages
+ GRAPHAPP_LIB = -lRgraphapp
+-TCL_VERSION = 85
++TCL_VERSION = 86
+ # was a reference to Rzlib.dll in R < 3.2.0
+ ZLIB_LIBS = -lz
+ 
